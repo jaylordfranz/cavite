@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toki sa Etivac</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Inline Styles */
+        .carousel-item {
+            height: 100vh;
+            background-color: #000;
+        }
+
+        .carousel-item img {
+            object-fit: cover;
+            width: 100%;
+            height: 100%;
+            filter: brightness(0.7);
+        }
+
+        .big-text {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .center-paragraph {
+            font-size: 1.25rem;
+            color: #555;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .art-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .art-card {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: center;
+        height: 100%;
+        }
+
+        .art-card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .art-title {
+        font-size: 1.2em;
+        margin-top: 10px;
+        }
+
+        .view-art {
+        display: block;
+        color: black;
+        text-decoration: underline;
+        margin-top: 5px;
+        }
+
+        .view-art:hover {
+            color: #007bff;
+        }
+
+        .full-image {
+            height: 80vh;
+            background-color: #000;
+        }
+
+        .full-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .center-text {
+            font-size: 1.5rem;
+            text-align: center;
+            color: #555;
+            padding: 50px 0;
+        }
+        .navbar {
+            padding: 15px;
+            background-color: #f8f9fa;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .navbar-brand img {
+            height: 50px;
+            width: 50px;
+            margin-right: 10px;
+        }
+
+        /* Side Menu Styles */
+        .side-menu {
+            height: 100%;
+            width: 300px;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #fff;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            padding-top: 30px;
+            z-index: 9999;
+            transition: 0.5s;
+            transform: translateX(100%);
+            opacity: 0;
+            visibility: hidden;
+            overflow-y: auto;
+        }
+        .side-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+        .side-menu a {
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #343a40;
+            display: block;
+            transition: 0.3s;
+        }
+        .side-menu a:hover {
+            color: #ffcc00;
+        }
+
+        /* Submenu Styles */
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .submenu-container .dropdown-icon {
+            float: right;
+            cursor: pointer;
+        }
+
+        /* Active submenu styles */
+        .submenu-container.active .submenu {
+            display: block;
+        }
+
+        .hamburger {
+            cursor: pointer;
+            border: none;
+            background: none;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 36px;
+            color: #343a40;
+        }
+        #scrollTopBtn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 100;
+        background-color: #ffffff;
+        color: #000;
+        border: none;
+        padding: 10px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 24px;
+        display: none;
+        transition: opacity 0.4s;
+    }
+
+    #scrollTopBtn:active {
+        background-color: #000;
+    }
+
+    /* Progress Indicator */
+    #scrollProgress {
+        position: fixed;
+        bottom: 80px;
+        right: 40px;
+        height: 5px;
+        background: linear-gradient(to right, #000, #3b3535);
+        width: 100px;
+        border-radius: 3px;
+    }
+    </style>
+</head>
+<body>
+
+<!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="https://via.placeholder.com/50" alt="Logo">
+            <span class="fw-bold ms-2">Kilawin</span>
+        </a>
+        <button class="hamburger" onclick="openMenu()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Sidebar Menu -->
+<div id="sideMenu" class="side-menu">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+    <a href="home.html">Home</a>
+    <div class="submenu-container">
+        <a href="javascript:void(0);" onclick="toggleSubmenu(this)">Destinations <i class="bi bi-chevron-down dropdown-icon"></i></a>
+        <div class="submenu">
+            <a href="destination-1.html">Tagaytay</a>
+            <a href="destination-2.html">Ternate, Cavite</a>
+            <a href="destination-3.html">Kawit, Cavite</a>
+        </div>
+    </div>
+    <div class="submenu-container">
+        <a href="javascript:void(0);" onclick="toggleSubmenu(this)">Activities <i class="bi bi-chevron-down dropdown-icon"></i></a>
+        <div class="submenu">
+            <a href="activities-1.html">Panoramic Tagaytay Ridge Tour</a>
+            <a href="activities-2.html">Full-Day Tour in Corregidor and Bataan War Memorial from Manila</a>
+            <a href="activities-3.html">Tagaytay Food Trip</a>
+        </div>
+    </div>
+    <div class="submenu-container">
+        <a href="javascript:void(0);" onclick="toggleSubmenu(this)">Cuisine <i class="bi bi-chevron-down dropdown-icon"></i></a>
+        <div class="submenu">
+            <a href="cuisine-1.html">Bacalao</a>
+            <a href="cuisine-2.html">Tamales</a>
+            <a href="cuisine-3.html">Kilawin</a>
+        </div>
+    </div>
+    <a href="newsletter.html">News</a>
+</div>
+
+<!-- First Div: Image Carousel -->
+<div id="museumCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#museumCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#museumCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#museumCarousel" data-bs-slide-to="2"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="images/ternate-slide-3.jpg" alt="Art 1">
+        </div>
+        <div class="carousel-item">
+            <img src="images/ternate-slide-2.jpg" alt="Art 2">
+        </div>
+        <div class="carousel-item">
+            <img src="images/ternate-slide-5.jpg" alt="Art 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#museumCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#museumCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+    </button>
+</div>
+
+<!-- Second Div: Big Emphasized Text -->
+<div class="container-fluid big-text">
+    Ternate, Cavite
+</div>
+
+<!-- Third Div: Paragraph Text -->
+<div class="container-fluid center-paragraph">
+    Ternate is a coastal town of Cavite located in the southwestern part of the province. It is bounded in the north by Naic, in the south by Nasugbu, Batangas, in the east by Maragondon, and in the west by Manila Bay.  
+</div>
+
+<!-- Modern Table with Nested Rows and Columns for Places to Visit in Ternate, Cavite -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Top Places to Visit in Ternate, Cavite</h2>
+    <div class="table-responsive">
+        <table class="table table-borderless">
+            <tbody>
+                <!-- Row 1 -->
+                <tr class="border-bottom">
+                    <td class="p-4">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5 class="place-number">01</h5>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4><strong>Pico de Loro</strong></h4>
+                                        <p class="text-muted">A famous hiking destination with breathtaking views of the surrounding landscapes and a scenic monolith.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <img src="images/ternate-table-1.webp" alt="Pico de Loro" class="img-fluid rounded shadow-sm" style="width: 150px;">
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <span class="badge bg-success fs-6">4.9</span>
+                                <a href="https://www.tripadvisor.com/Attraction_Review-g2138852-d2104073-Reviews-Mt_Pico_de_Loro-General_Emilio_Aguinaldo_Cavite_Province_Calabarzon_Region_Luzon.html" class="btn btn-outline-dark d-block mt-2">Visit Website</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Row 2 -->
+                <tr class="border-bottom">
+                    <td class="p-4">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5 class="place-number">02</h5>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4><strong>Kaybiang Tunnel</strong></h4>
+                                        <p class="text-muted">The longest tunnel in the Philippines, popular for scenic drives with a view of both mountains and the sea.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <img src="images/ternate-table-2.jpg" alt="Kaybiang Tunnel" class="img-fluid rounded shadow-sm" style="width: 150px;">
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <span class="badge bg-success fs-6">4.7</span>
+                                <a href="https://www.tripadvisor.com/Attraction_Review-g1015976-d19268758-Reviews-Kaybiang_Tunnel-Nasugbu_Batangas_Province_Calabarzon_Region_Luzon.html" class="btn btn-outline-dark d-block mt-2">Visit Website</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Row 3 -->
+                <tr class="border-bottom">
+                    <td class="p-4">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5 class="place-number">03</h5>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4><strong>Marine Base Beach</strong></h4>
+                                        <p class="text-muted">A secluded beach maintained by the Philippine Marines, known for its peaceful environment and pristine waters.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <img src="images/ternate-table-3.jpg" alt="Marine Base Beach" class="img-fluid rounded shadow-sm" style="width: 150px;">
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <span class="badge bg-success fs-6">4.5</span>
+                                <a href="https://www.tripadvisor.com/Attraction_Review-g2192430-d2304584-Reviews-Marine_Base_Ternate_Beach-Ternate_Cavite_Province_Calabarzon_Region_Luzon.html" class="btn btn-outline-dark d-block mt-2">Visit Website</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Row 4 -->
+                <tr class="border-bottom">
+                    <td class="p-4">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5 class="place-number">04</h5>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4><strong>Puerto Azul Beach Resort</strong></h4>
+                                        <p class="text-muted">Once a top destination in Cavite, it offers stunning views of the coastline and opportunities for water activities.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <img src="images/ternate-table-4.jpg" alt="Puerto Azul" class="img-fluid rounded shadow-sm" style="width: 150px;">
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <span class="badge bg-success fs-6">4.6</span>
+                                <a href="https://www.tripadvisor.com/Hotel_Review-g298448-d1197627-Reviews-Puerto_Azul_Beach-Cavite_City_Cavite_Province_Calabarzon_Region_Luzon.html" class="btn btn-outline-dark d-block mt-2">Visit Website</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Row 5 -->
+                <tr class="border-bottom">
+                    <td class="p-4">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5 class="place-number">05</h5>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4><strong>Mount Palay-Palay National Park</strong></h4>
+                                        <p class="text-muted">A protected area offering hiking trails, waterfalls, and a chance to explore the region's natural biodiversity.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <img src="images/ternate-table-5.jpg" alt="Mount Palay-Palay" class="img-fluid rounded shadow-sm" style="width: 150px;">
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <span class="badge bg-success fs-6">4.8</span>
+                                <a href="https://www.tripadvisor.com/Attraction_Review-g2192430-d2179597-Reviews-Mt_Palay_Palay-Ternate_Cavite_Province_Calabarzon_Region_Luzon.html" class="btn btn-outline-dark d-block mt-2">Visit Website</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <!-- Row 6 -->
+                <tr>
+                    <td class="p-4">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h5 class="place-number">06</h5>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h4><strong>Caylabne Bay Resort</strong></h4>
+                                        <p class="text-muted">A secluded resort offering a peaceful retreat with breathtaking beach views and luxury accommodations.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 text-center">
+                                <img src="images/ternate-table-6.webp" alt="Caylabne Bay" class="img-fluid rounded shadow-sm" style="width: 150px;">
+                            </div>
+                            <div class="col-md-2 text-center">
+                                <span class="badge bg-success fs-6">4.4</span>
+                                <a href="https://www.tripadvisor.com/Attraction_Review-g2192430-d2304584-Reviews-Marine_Base_Ternate_Beach-Ternate_Cavite_Province_Calabarzon_Region_Luzon.html" class="btn btn-outline-dark d-block mt-2">Visit Website</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Fifth Div: Full Image -->
+<div class="container-fluid full-image mt-5">
+    <img src="images/ternate-slide-4.jpg" alt="Full Art Image">
+</div>
+
+<!-- Sixth Div: Text Centered -->
+<div class="container-fluid center-text">
+    The terrain is predominantly mountainous. The slope of the area is generally characterized as rolling to moderately sloping and in some portions, steep to generally steep. The vegetative cover of the area is predominantly forest.
+</div>
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
+<!-- Scroll Progress Bar -->
+<div id="scrollProgress"></div>
+
+<script>
+    // Open the side menu
+    function openMenu() {
+        document.getElementById("sideMenu").classList.add("active");
+    }
+
+    // Close the side menu
+    function closeMenu() {
+        document.getElementById("sideMenu").classList.remove("active");
+    }
+
+    // Toggle submenu visibility when clicked
+    function toggleSubmenu(element) {
+        const parent = element.parentElement;
+        parent.classList.toggle("active");
+    }
+
+    // Get elements
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    const scrollProgress = document.getElementById("scrollProgress");
+
+    // Show/hide the button and update the progress when scrolling
+    window.onscroll = function () {
+        showScrollButton();
+        updateScrollProgress();
+    };
+
+    // Show the scroll-to-top button after scrolling 100px
+    function showScrollButton() {
+        if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+            scrollTopBtn.style.display = "block";
+        } else {
+            scrollTopBtn.style.display = "none";
+        }
+    }
+
+    // Update the scroll progress indicator
+    function updateScrollProgress() {
+        const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = (scrollTop / scrollHeight) * 100;
+        scrollProgress.style.width = `${progress}%`;
+    }
+
+    // Scroll to the top of the page when the button is clicked
+    scrollTopBtn.onclick = function () {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    };
+</script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
+</body>
+</html>

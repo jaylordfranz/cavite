@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toki sa Cavite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Top Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .hamburger {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Sidebar */
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            z-index: 9999; /* Ensures it's in front of all elements */
+            padding-top: 60px;
+        }
+
+        .side-menu a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 1.25rem;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .side-menu a:hover {
+            color: #f1f1f1;
+            background-color: #575757;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 2rem;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .dropdown-icon {
+            float: right;
+        }
+
+        /* Big Image Fullscreen */
+        .full-image {
+            width: 100%;
+            height: 90vh;
+            background-image: url('https://via.placeholder.com/1920x1080');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Div 4: Information Section */
+        .info-section {
+            padding: 50px 0;
+        }
+
+        .info-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .info-section p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .info-section .solid-line {
+            border-top: 2px solid #ccc;
+            margin: 20px 0;
+        }
+
+        .info-icons i {
+            margin-right: 10px;
+            font-size: 1.25rem;
+        }
+
+        .info-icons span {
+            font-size: 1.1rem;
+        }
+
+        .expandable-content {
+            display: none;
+        }
+
+        .expandable-content.show {
+            display: block;
+        }
+
+        .reserve-box {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .google-map {
+            height: 400px;
+            background-color: #ddd;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 0;
+        }
+
+        footer a {
+            color: #fff;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="https://via.placeholder.com/50" alt="Logo">
+            <span class="fw-bold ms-2">Panoramic Tagaytay Ridge Tour from Manila</span>
+        </a>
+        <button class="hamburger" onclick="openMenu()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Sidebar Menu -->
+<div id="sideMenu" class="side-menu">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+    <a href="home.html">Home</a>
+    <div class="submenu-container">
+        <a href="javascript:void(0);" onclick="toggleSubmenu(this)">Destinations <i class="bi bi-chevron-down dropdown-icon"></i></a>
+        <div class="submenu">
+            <a href="destination-1.html">Tagaytay</a>
+            <a href="destination-2.html">Ternate, Cavite</a>
+            <a href="destination-3.html">Kawit, Cavite</a>
+        </div>
+    </div>
+    <div class="submenu-container">
+        <a href="javascript:void(0);" onclick="toggleSubmenu(this)">Activities <i class="bi bi-chevron-down dropdown-icon"></i></a>
+        <div class="submenu">
+            <a href="activities-1.html">Panoramic Tagaytay Ridge Tour</a>
+            <a href="activities-2.html">Full-Day Tour in Corregidor and Bataan War Memorial from Manila</a>
+            <a href="activities-3.html">Tagaytay Food Trip</a>
+        </div>
+    </div>
+    <div class="submenu-container">
+        <a href="javascript:void(0);" onclick="toggleSubmenu(this)">Cuisine <i class="bi bi-chevron-down dropdown-icon"></i></a>
+        <div class="submenu">
+            <a href="cuisine-1.html">Bacalao</a>
+            <a href="cuisine-2.html">Tamales</a>
+            <a href="cuisine-3.html">Kilawin</a>
+        </div>
+    </div>
+</div>
+
+<!-- Big Image Fullscreen -->
+<div class="full-image">
+    <img src="images/act-3.jpg" alt="Fullscreen Image" style="width: 100%; height: 90vh; object-fit: cover;">
+</div>
+
+<!-- Div 4: Information Section -->
+<div class="info-section container">
+    <div class="row">
+        <!-- Left Side -->
+        <div class="col-md-8">
+            <h2>About This Tour</h2>
+            <p>Join us for a breathtaking Panoramic Tagaytay Ridge Tour from Manila, where you’ll soak in stunning views of Taal Lake and Volcano, alongside the lush green hills of Tagaytay. This day-long adventure takes you through scenic routes with multiple stops to admire the natural beauty of the region. Enjoy local delicacies while visiting key attractions like the People's Park in the Sky, the Tagaytay Picnic Grove, and the famous Sky Ranch amusement park.</p>
+            <div class="solid-line"></div>
+            <div class="info-icons">
+                <i class="bi bi-person"></i><span>Ages 3-100, max of 20 per group</span><br>
+                <i class="bi bi-clock"></i><span>Duration: 8 hours</span><br>
+                <i class="bi bi-calendar"></i><span>Start time: 8:00 AM</span><br>
+                <i class="bi bi-phone"></i><span>Mobile ticket</span><br>
+                <i class="bi bi-geo-alt"></i><span>Live guide: English</span>
+            </div>
+            <div class="solid-line"></div>
+
+            <!-- Expandable Section -->
+            <h3 onclick="toggleContent(this)"><i class="bi bi-chevron-down dropdown-icon"></i> What's Included</h3>
+            <div class="expandable-content">
+                <p>All Fees and Taxes<br>Transportation from Manila to Tagaytay<br>Guided tour of Tagaytay Ridge<br>Lunch at a local restaurant</p>
+                <h4>What's not included</h4>
+                <p>Personal Expenses<br>Tips</p>
+            </div>
+
+            <div class="solid-line"></div>
+            <h3 onclick="toggleContent(this)"><i class="bi bi-chevron-down dropdown-icon"></i> What to Expect</h3>
+            <div class="expandable-content" style="display: block;">
+                <p>This is a typical itinerary for this product:</p>
+
+                <strong>Stop 1: Departure from Manila</strong><br>
+                Begin your journey from Manila, enjoying the scenic drive to Tagaytay.<br>
+                <strong>Duration:</strong> 1.5 hours<br><br>
+
+                <strong>Stop 2: People's Park in the Sky</strong><br>
+                Explore this famous park with panoramic views of Taal Volcano and Lake.<br>
+                <strong>Duration:</strong> 1 hour<br><br>
+
+                <strong>Stop 3: Picnic Grove</strong><br>
+                Enjoy local snacks and take in the views of the ridge.<br>
+                <strong>Duration:</strong> 1 hour<br><br>
+
+                <strong>Stop 4: Sky Ranch</strong><br>
+                Experience the amusement park rides or relax by the lake.<br>
+                <strong>Duration:</strong> 1 hour<br><br>
+
+                <strong>Stop 5: Return to Manila</strong><br>
+                Conclude your tour with a scenic drive back to Manila.<br>
+                <strong>Duration:</strong> 1.5 hours
+            </div>
+        </div>
+        <!-- Right Side: Reservation Box -->
+        <div class="col-md-4">
+            <div class="reserve-box">
+                <h4>From ₱7,500.00 per adult</h4>
+                <p><strong>Select date and travelers</strong></p>
+                <form>
+                    <div class="mb-3">
+                        <label for="travelDate" class="form-label">Travel Date</label>
+                        <input type="date" id="travelDate" class="form-control mb-2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numAdults" class="form-label">Number of Adults</label>
+                        <input type="number" id="numAdults" value="2" min="1" class="form-control mb-2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="numChildren" class="form-label">Number of Children</label>
+                        <input type="number" id="numChildren" value="0" min="0" class="form-control mb-2">
+                    </div>
+                    <div class="mb-3">
+                        <label for="tourOption" class="form-label">Tour Options</label>
+                        <select id="tourOption" class="form-select mb-2">
+                            <option value="standard">Standard</option>
+                            <option value="vip">VIP Experience</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="specialRequest" class="form-label">Special Requests</label>
+                        <textarea id="specialRequest" class="form-control" rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Reserve Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Map -->
+    <h2>Location</h2>
+    <div class="google-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d123818.14192068063!2d120.88652993566583!3d14.1174496711231!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd777b1ab54c8f%3A0x6ecc514451ce2be8!2sTagaytay%2C%20Cavite!5e0!3m2!1sen!2sph!4v1729352381111!5m2!1sen!2sph" width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <!-- Contact Info -->
+            <div class="col-md-4 mb-4">
+                <h5>Contact Us</h5>
+                <p>Cavite, Philippines<br>Phone: (123) 456-7890<br>Email: toki@cavite.com</p>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="col-md-4 mb-4">
+                <h5>Follow Us</h5>
+                <a href="#" class="d-block mb-2"><i class="bi bi-facebook"></i> Facebook</a>
+                <a href="#" class="d-block mb-2"><i class="bi bi-twitter"></i> Twitter</a>
+                <a href="#" class="d-block mb-2"><i class="bi bi-instagram"></i> Instagram</a>
+                <a href="#" class="d-block"><i class="bi bi-youtube"></i> YouTube</a>
+            </div>
+        </div>
+
+        <div class="row mt-4 text-center">
+            <div class="col">
+                <a href="#" class="text-white me-2">Privacy Policy</a>|
+                <a href="#" class="text-white ms-2">Terms of Service</a>|
+                <a href="#" class="text-white ms-2">Contact Us</a>
+            </div>
+        </div>
+
+        <div class="row mt-4 text-center">
+            <div class="col">
+                <p>&copy; 2024 Toki sa Cavite. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function openMenu() {
+        document.getElementById("sideMenu").style.width = "250px";
+    }
+
+    function closeMenu() {
+        document.getElementById("sideMenu").style.width = "0";
+    }
+
+    function toggleSubmenu(element) {
+        const submenu = element.nextElementSibling;
+        submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+    }
+
+    function toggleContent(element) {
+        const content = element.nextElementSibling;
+        content.classList.toggle('show');
+    }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

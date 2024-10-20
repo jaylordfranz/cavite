@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Toki sa Cavite</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <!-- Custom CSS -->
+  <style>
+    .solid-line {
+            border: none;           /* Remove default border */
+            height: 10px;           /* Thickness of the line */
+            background-color: black; /* Color of the line */
+            margin: 20px 0;        /* Margin above and below the line */
+    }
+
+    /* Button
+    s styling */
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .btn-custom {
+      flex: 1;
+      margin: 5px;
+      padding: 15px;
+      font-size: 1.2rem;
+      background-color: black; /* Default black background */
+      color: white; /* Text color white */
+      border: none;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+    }
+
+    /* Hover effects */
+    .btn-custom:hover {
+      background-color: white; /* Background turns white on hover */
+      color: black; /* Text turns black */
+      border: 2px solid black; /* Black border on hover */
+    }
+
+    /* Transition and morph effect */
+    .btn-custom {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .btn-custom:nth-child(1) {
+      transition-delay: 0.1s;
+    }
+
+    .btn-custom:nth-child(2) {
+      transition-delay: 0.2s;
+    }
+
+    .btn-custom:nth-child(3) {
+      transition-delay: 0.3s;
+    }
+
+    .btn-custom:nth-child(4) {
+      transition-delay: 0.4s;
+    }
+
+    .btn-custom.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .news-card {
+            background-color: #fff;
+            border: 2px solid #e5e5e5;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 700px; /* Fixed height for the card */
+    }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+        .news-img {
+            width: 100%;
+            height: 350px; /* Fixed height for the image */
+            object-fit: cover;
+    }
+
+        .news-title {
+            display: block;
+            font-weight: bold;
+            margin: 15px 10px;
+            font-size: 1.2rem;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .news-title:hover {
+            text-decoration: underline;
+    }
+
+        .lead-paragraph {
+            margin: 10px 10px;
+            flex: 1;
+            color: #555;
+            overflow: hidden; /* Prevent overflow */
+            text-overflow: ellipsis; /* Add ellipsis */
+            white-space: nowrap; /* Prevent line breaks */
+        }
+
+        .read-more {
+            display: block;
+            margin: 15px 10px;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        .vertical-img {
+            width: 100%; /* Full width for vertical images */
+            height: 400px; /* Fixed height for vertical images */
+            object-fit: cover; /* Cover image properly */
+            margin-bottom: 15px; /* Spacing between images */
+            border-radius: 8px; /* Rounded corners for vertical images */
+    }
+  </style>
+</head>
+<body style="font-family: 'Helvetica Neue', sans-serif; background-color: #f8f9fa;">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding: 1rem 0; border-bottom: 1px solid #e5e5e5;">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#" style="font-size: 1.5rem; font-weight: bold; color: #333;">
+        <div class="logo-placeholder me-2" style="width: 50px; height: 50px; background-color: #ccc; border-radius: 50%;"></div>
+        <span class="business-name">Toki sa Cavite</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#" style="color: #333 !important; font-size: 1rem; margin-left: 10px;">Home</a>
+          </li>
+          <!-- Luzon Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="luzonDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #333 !important; font-size: 1rem; margin-left: 10px;">
+              Destinations
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="luzonDropdown" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <li><a class="dropdown-item" href="destination-1.html" style="color: #333;">Tagaytay</a></li>
+              <li><a class="dropdown-item" href="destination-2.html" style="color: #333;">Ternate, Cavite</a></li>
+              <li><a class="dropdown-item" href="destination-3.html" style="color: #333;">Kawit, Cavite</a></li>
+            </ul>
+          </li>
+          <!-- Visayas Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="visayasDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #333 !important; font-size: 1rem; margin-left: 10px;">
+              Activities
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="visayasDropdown" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <li><a class="dropdown-item" href="activities-1.html" style="color: #333;">Spectacular Manila to Tagaytay</a></li>
+              <li><a class="dropdown-item" href="activities-2.html" style="color: #333;">Full-Day Tour in Corregidor and Bataan War Memorial from Manila</a></li>
+              <li><a class="dropdown-item" href="activities-3.html" style="color: #333;">PanoramicTagaytay Ridge Tour</a></li>
+            </ul>
+          </li>
+          <!-- Mindanao Dropdown -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="mindanaoDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #333 !important; font-size: 1rem; margin-left: 10px;">
+              Cuisines
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="mindanaoDropdown" style="border: none; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+              <li><a class="dropdown-item" href="cuisine-1.html" style="color: #333;">Bacalao</a></li>
+              <li><a class="dropdown-item" href="cuisine-2.html" style="color: #333;">Tamales</a></li>
+              <li><a class="dropdown-item" href="cuisine-3.html" style="color: #333;">Kilawin</a></li>
+            </ul>
+          </li>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content Section -->
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Left Side: Image Carousel -->
+      <div class="col-lg-8">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="images/home-slide-1.jpg" class="d-block w-100" alt="Slide 1" style="width: 500px; height: 500px; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+              <img src="images/home-slide-2.jpg" class="d-block w-100" alt="Slide 2" style="width: 500px; height: 500px; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+              <img src="images/home-slide-3.jpg" class="d-block w-100" alt="Slide 3" style="width: 500px; height: 500px; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+              <img src="images/home-slide-4.jpg" class="d-block w-100" alt="Slide 4" style="width: 500px; height: 500px; object-fit: cover;">
+            </div>
+            <div class="carousel-item">
+              <img src="images/home-slide-5.webp" class="d-block w-100" alt="Slide 5" style="width: 500px; height: 500px; object-fit: cover;">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Side: Image Placeholder -->
+      <div class="col-lg-4">
+        <div class="image-container" style="background-color: #e5e5e5; width: 500px; height: 500px; display: flex; align-items: center; justify-content: center;">
+          <img src="images/home-right.png" alt="Right Image" style="max-width: 100%; max-height: 100%; object-fit: cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="solid-line">
+
+<footer style="background-color: #333; color: #fff; padding: 40px 0;">
+    <div class="container">
+        <div class="row">
+            <!-- Museum Information -->
+            <div class="col-md-4 mb-4">
+                <h5>Museum Name</h5>
+                <p>123 Museum Road<br>
+                City, State, Zip Code<br>
+                Phone: (123) 456-7890<br>
+                Email: info@museumname.org</p>
+            </div>
+
+            <!-- Opening Hours -->
+            <div class="col-md-4 mb-4">
+                <h5>Opening Hours</h5>
+                <ul style="list-style-type: none; padding: 0;">
+                    <li>Monday: Closed</li>
+                    <li>Tuesday - Friday: 10 AM - 5 PM</li>
+                    <li>Saturday: 10 AM - 6 PM</li>
+                    <li>Sunday: 12 PM - 5 PM</li>
+                </ul>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="col-md-4 mb-4">
+                <h5>Follow Us</h5>
+                <a href="#" style="color: #fff; text-decoration: none; margin-right: 15px;">
+                    <i class="bi bi-facebook"></i> Facebook
+                </a><br>
+                <a href="#" style="color: #fff; text-decoration: none; margin-right: 15px;">
+                    <i class="bi bi-twitter"></i> Twitter
+                </a><br>
+                <a href="#" style="color: #fff; text-decoration: none; margin-right: 15px;">
+                    <i class="bi bi-instagram"></i> Instagram
+                </a><br>
+                <a href="#" style="color: #fff; text-decoration: none;">
+                    <i class="bi bi-youtube"></i> YouTube
+                </a>
+            </div>
+        </div>
+
+        <!-- Additional Links -->
+        <div class="row mt-4">
+            <div class="col text-center">
+                <a href="#" style="color: #fff; text-decoration: none; margin-right: 15px;">Privacy Policy</a> |
+                <a href="#" style="color: #fff; text-decoration: none; margin-right: 15px;">Terms of Service</a> |
+                <a href="#" style="color: #fff; text-decoration: none;">Contact Us</a>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <div class="col text-center">
+                <p>&copy; 2024 Museum Name. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Custom JS for Morph Animation -->
+  <script>
+    window.addEventListener('DOMContentLoaded', function() {
+      const buttons = document.querySelectorAll('.btn-custom');
+      buttons.forEach(button => {
+        setTimeout(() => {
+          button.classList.add('appear');
+        }, 100); // Delay to allow animation start
+      });
+    });
+  </script>
+</body>
+</html>

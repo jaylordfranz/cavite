@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toki sa Cavite</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f4f4;
+        }
+
+        /* Fullscreen Image */
+        .full-image {
+            width: 100%;
+            height: 70vh;
+            background-image: url('https://via.placeholder.com/1920x1080?text=Bacalao+de+Cavite');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+        }
+
+        .full-image h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        /* Recipe Information */
+        h2, h3 {
+            color: #d9534f;
+            margin-top: 30px;
+            border-bottom: 2px solid #d9534f;
+            padding-bottom: 10px;
+        }
+
+        /* Review Cards */
+        .review-card {
+            background-color: #ffffff;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .review-card h5 {
+            font-weight: bold;
+            color: #d9534f;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #d9534f;
+            color: #fff;
+        }
+
+        .accordion-button {
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+
+        footer a {
+            color: #fff;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Top Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .hamburger {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        /* Sidebar */
+        .side-menu {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            top: 0;
+            right: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            z-index: 9999; /* Ensures it's in front of all elements */
+            padding-top: 60px;
+        }
+
+        .side-menu a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 1.25rem;
+            color: #f1f1f1;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .side-menu a:hover {
+            color: #f1f1f1;
+            background-color: #575757;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 25px;
+            font-size: 2rem;
+        }
+
+        .submenu {
+            display: none;
+            padding-left: 20px;
+        }
+
+        .dropdown-icon {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="https://via.placeholder.com/50" alt="Logo">
+            <span class="fw-bold ms-2">Bacalao</span>
+        </a>
+        <button class="hamburger" onclick="openMenu()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Sidebar Menu -->
+<div id="sideMenu" class="side-menu">
+    <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">&times;</a>
+    <a href="home.html">Home</a>
+    <div class="submenu-container">
+        <a href="javascript:void(0);" onclick="toggleSubmenu(this)">Destinations <i class="bi bi-chevron-down dropdown-icon"></i></a>
+        <div class="submenu">
+            <a href="destination-1.html">Tagaytay</a>
+            <a href="destination-2.html">Ternate, Cavite</a>
+            <a href="destination-3.html">Kawit, Cavite</a>
+        </div>
+    </div>
+    <div class="submenu-container">
+        <a href="javascript:void(0);" onclick="toggleSubmenu(this)">Activities <i class="bi bi-chevron-down dropdown-icon"></i></a>
+        <div class="submenu">
+            <a href="activities-1.html">Panoramic Tagaytay Ridge Tour</a>
+            <a href="activities-2.html">Full-Day Tour in Corregidor and Bataan War Memorial from Manila</a>
+            <a href="activities-3.html">Tagaytay Food Trip</a>
+        </div>
+    </div>
+    <div class="submenu-container">
+        <a href="javascript:void(0);" onclick="toggleSubmenu(this)">Cuisine <i class="bi bi-chevron-down dropdown-icon"></i></a>
+        <div class="submenu">
+            <a href="cuisine-1.html">Bacalao</a>
+            <a href="cuisine-2.html">Tamales</a>
+            <a href="cuisine-3.html">Kilawin</a>
+        </div>
+    </div>
+    <a href="newsletter.html">News</a>
+</div>
+
+    <!-- Full Image Section -->
+<div class="full-image position-relative">
+    <img src="images/cuisine-1.webp" alt="Bacalao de Cavite" class="img-fluid w-100 h-100 position-absolute top-0 start-0" style="object-fit: cover; opacity: 0.7;">
+    <h1 class="text-center position-relative" style="z-index: 1;">Bacalao de Cavite</h1>
+</div>
+
+    <!-- Recipe Information -->
+    <div class="container mt-5">
+        <h2>Recipe Overview</h2>
+        <p class="lead">Bacalao is a salted fish dish with vegetables that I grew up eating every Good Friday in my hometown, Cavite City. It is one of my comfort foods.</p>
+        <p>This dish reminds me of my childhood and gives me the Semana Santa feels. Bacalao is best served with steamed white rice or with hot pandesal.</p>
+
+        <h3>Ingredients</h3>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Ingredient</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Dried Salted Cod Fish (or similar)</td>
+                    <td>1/2 kilo</td>
+                </tr>
+                <tr>
+                    <td>Extra Virgin Olive Oil</td>
+                    <td>1/4 – 1/2 cup</td>
+                </tr>
+                <tr>
+                    <td>Atsuete Seeds (dry)</td>
+                    <td>2-4 tbsp</td>
+                </tr>
+                <tr>
+                    <td>Garlic (minced)</td>
+                    <td>4 cloves</td>
+                </tr>
+                <tr>
+                    <td>Onion (chopped)</td>
+                    <td>1 medium</td>
+                </tr>
+                <tr>
+                    <td>Potato (cubed)</td>
+                    <td>1 big</td>
+                </tr>
+                <tr>
+                    <td>Garbanzos (cooked and peeled)</td>
+                    <td>150 – 200 gms</td>
+                </tr>
+                <tr>
+                    <td>Water</td>
+                    <td>1/4 cup</td>
+                </tr>
+                <tr>
+                    <td>Cabbage (cut into small pieces)</td>
+                    <td>1 small</td>
+                </tr>
+                <tr>
+                    <td>Red Bell Pepper (diced)</td>
+                    <td>1 big</td>
+                </tr>
+                <tr>
+                    <td>Patis and freshly ground pepper</td>
+                    <td>to taste</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Procedure</h3>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">In a pan, heat the olive oil, fry the cubed potatoes until light brown or half cooked, remove from oil, set aside.</li>
+            <li class="list-group-item">In the same pan with the same oil, fry the atsuete seeds until color is released into the oil. Remove atsuete seeds, discard.</li>
+            <li class="list-group-item">In the same pan and oil, sauté garlic and onions until onions are limp and translucent; be careful not to burn the garlic.</li>
+            <li class="list-group-item">Place the shredded fish and sauté for about a minute.</li>
+            <li class="list-group-item">Add the garbanzos, mix well.</li>
+            <li class="list-group-item">Pour in the water, cover, and simmer for about 5 minutes.</li>
+            <li class="list-group-item">Add the cabbage, mix, and cook for about 3 minutes.</li>
+            <li class="list-group-item">Put in the semi-cooked potato and cubed bell peppers, mix well. You may add extra olive oil if needed. Season with patis and pepper to taste. Cover and cook for another 5 minutes.</li>
+            <li class="list-group-item">Serve hot with rice or pandesal. Enjoy!</li>
+        </ol>
+
+        <h3>Tradition</h3>
+        <p>It is not only a dish but more of a tradition that has been passed on from generation to generation. Hoping that the next generations would love it as much as we do.</p>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="container mt-5">
+        <h2>Reviews</h2>
+        <div class="row">
+            <div class="col-md-4 mb-4">
+                <div class="card review-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Maria C.</h5>
+                        <p class="card-text">"This recipe brings back so many memories of my childhood! Absolutely delicious!"</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card review-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Jose R.</h5>
+                        <p class="card-text">"A perfect dish for Good Friday! The flavors are amazing!"</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card review-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Anna L.</h5>
+                        <p class="card-text">"I love how this dish is both comforting and fulfilling. Highly recommend!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accordion Section -->
+    <div class="container mt-5">
+        <h2>Frequently Asked Questions</h2>
+        <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        What is Bacalao?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Bacalao is a traditional dish made from salted cod fish, typically enjoyed in various cultures, especially during religious observances.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        How should I serve Bacalao?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Bacalao is best served hot, accompanied by steamed white rice or hot pandesal.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <!-- Contact Info -->
+            <div class="col-md-4 mb-4">
+                <h5>Contact Us</h5>
+                <p>Cavite, Philippines<br>Phone: (123) 456-7890<br>Email: toki@cavite.com</p>
+            </div>
+
+            <!-- Social Media Links -->
+            <div class="col-md-4 mb-4">
+                <h5>Follow Us</h5>
+                <a href="#" class="d-block mb-2"><i class="bi bi-facebook"></i> Facebook</a>
+                <a href="#" class="d-block mb-2"><i class="bi bi-twitter"></i> Twitter</a>
+                <a href="#" class="d-block mb-2"><i class="bi bi-instagram"></i> Instagram</a>
+                <a href="#" class="d-block"><i class="bi bi-youtube"></i> YouTube</a>
+            </div>
+        </div>
+
+        <div class="row mt-4 text-center">
+            <div class="col">
+                <a href="#" class="text-white me-2">Privacy Policy</a>|
+                <a href="#" class="text-white ms-2">Terms of Service</a>|
+                <a href="#" class="text-white ms-2">Contact Us</a>
+            </div>
+        </div>
+
+        <div class="row mt-4 text-center">
+            <div class="col">
+                <p>&copy; 2024 Toki sa Cavite. All Rights Reserved.</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    function openMenu() {
+        document.getElementById("sideMenu").style.width = "250px";
+    }
+
+    function closeMenu() {
+        document.getElementById("sideMenu").style.width = "0";
+    }
+
+    function toggleSubmenu(element) {
+        const submenu = element.nextElementSibling;
+        submenu.style.display = (submenu.style.display === "block") ? "none" : "block";
+    }
+
+    function toggleContent(element) {
+        const content = element.nextElementSibling;
+        content.classList.toggle('show');
+    }
+</script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
